@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#062d25">
+  <meta name="application-name" content="Emerald of the Equator">
+  <meta property="og:title" content="Emerald of the Equator | A FEHB International Initiative">
+  <meta property="og:description" content="Discover São Tomé and Príncipe through Emerald of the Equator, a tourism and destination discovery initiative of FEHB International.">
+  <link rel="canonical" href="https://tourism.fehborganization.org/">
+  <meta name="description" content="Discover São Tomé and Príncipe: volcanic landscapes, rainforest, beaches, culture and island experiences.">
+  <title>Emerald of the Equator | Discover São Tomé & Príncipe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="announcement">TWO ISLANDS. ONE EXTRAORDINARY JOURNEY. <span>Explore São Tomé & Príncipe</span></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Emerald of the Equator home">
+      <span class="brand-mark">0°</span><span><b>EMERALD</b><small>OF THE EQUATOR</small></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="main-nav" id="mainNav">
+      <a href="#home">Home</a><a href="#explore">Explore</a><a href="#experiences">Experiences</a><a href="#about">About the islands</a><a href="https://fehborganization.org/" target="_blank" rel="noopener">FEHB International ↗</a>
+      <a class="nav-cta" href="#contact">Plan your visit <span>↗</span></a>
+    </nav>
+  </header>
+  <div class="initiative-ribbon"><span>AN INITIATIVE OF</span> <a href="https://fehborganization.org/" target="_blank" rel="noopener">FEHB INTERNATIONAL ↗</a></div>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-image"></div><div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow"><span></span> GULF OF GUINEA · CENTRAL AFRICA</p>
+        <h1>Find your own<br><em>island rhythm.</em></h1>
+        <p class="hero-copy">Discover a world of emerald rainforests, volcanic peaks, quiet beaches and living island culture in São Tomé & Príncipe.</p>
+        <div class="hero-actions"><a class="button button-gold" href="#explore">Explore the islands <span>→</span></a><a class="text-link" href="#experiences">Discover experiences <span>↗</span></a></div>
+        <div class="hero-note"><span class="note-line"></span><span>LEVE-LEVE</span><small>Take it easy. You're on island time.</small></div>
+      </div>
+      <div class="hero-side-label">1° 43′ N — 0° 01′ S &nbsp; / &nbsp; EQUATORIAL ATLANTIC</div>
+    </section>
+
+    <section class="intro section-wrap" id="about">
+      <div class="intro-label"><span class="eyebrow">A DIFFERENT KIND OF ESCAPE</span><span class="gold-rule"></span></div>
+      <div class="intro-copy"><h2>Small islands.<br><em>Endless wonder.</em></h2><p>Off the coast of Central Africa, São Tomé and Príncipe invite you to slow down and look closer. Follow forest trails, discover cocoa heritage, meet welcoming communities and find beaches that feel a world away.</p><a class="under-link" href="#explore">Get to know the islands <span>→</span></a></div>
+    </section>
+
+    <section class="islands-band">
+      <article class="island-tile sao-tome-tile"><div><span class="eyebrow">THE LARGER ISLAND</span><h3>São Tomé</h3><p>Volcanic drama, historic roças and vibrant coastal life.</p><a href="#explore" data-filter-link="São Tomé">Explore São Tomé ↗</a></div></article>
+      <article class="island-tile principe-tile"><div><span class="eyebrow">THE GREEN ISLAND</span><h3>Príncipe</h3><p>Wild rainforest, secluded coves and extraordinary biodiversity.</p><a href="#explore" data-filter-link="Príncipe">Explore Príncipe ↗</a></div></article>
+    </section>
+
+    <section class="explore-section section-wrap" id="explore">
+      <div class="section-heading"><div><span class="eyebrow">YOUR ISLAND ATLAS</span><h2>Places worth <em>discovering.</em></h2></div><p>Choose a destination to explore its story and find it on the map.</p></div>
+      <div class="atlas-layout">
+        <div class="destination-panel">
+          <div class="filter-row" role="group" aria-label="Filter destinations">
+            <button class="filter active" data-filter="All">All places</button><button class="filter" data-filter="São Tomé">São Tomé</button><button class="filter" data-filter="Príncipe">Príncipe</button>
+          </div>
+          <div class="destination-list" id="destinationList" aria-live="polite"></div>
+        </div>
+        <div class="map-panel">
+          <div id="map" role="application" aria-label="Interactive map of São Tomé and Príncipe"></div>
+          <div class="map-caption"><span class="map-dot"></span> SELECT A PIN OR DESTINATION</div>
+          <div class="map-credit">Map data © OpenStreetMap · © CARTO</div>
+        </div>
+      </div>
+      <article class="destination-detail" id="destinationDetail" aria-live="polite">
+        <div class="detail-image" id="detailImage"><span class="detail-island" id="detailIsland">SÃO TOMÉ</span></div>
+        <div class="detail-content"><div class="detail-meta" id="detailCategory">LANDSCAPE · NATURE</div><h3 id="detailName">Pico Cão Grande</h3><p id="detailSummary"></p><div class="detail-tags" id="detailTags"></div><div class="detail-actions"><button class="button button-dark" id="audioButton">▶ Listen to overview</button><button class="button button-outline" id="copyButton">Copy coordinates</button></div><p class="coordinate-line" id="coordinateLine"></p></div>
+      </article>
+      <p class="data-note">Destination details are an editorial introduction. Check local conditions, access arrangements and current guidance before travelling.</p>
+    </section>
+
+    <section class="experience-section" id="experiences">
+      <div class="section-wrap"><div class="section-heading light-heading"><div><span class="eyebrow">MAKE IT YOURS</span><h2>Travel by <em>feeling.</em></h2></div><p>From slow mornings by the sea to rainforest adventures, find the experience that speaks to you.</p></div>
+        <div class="experience-grid">
+          <article class="experience-card exp-forest"><span>01 / NATURE</span><h3>Into the<br>rainforest</h3><p>Follow green trails into the islands' extraordinary natural world.</p></article>
+          <article class="experience-card exp-coast"><span>02 / COAST</span><h3>Find your<br>blue horizon</h3><p>Discover quiet coves, warm water and Atlantic views.</p></article>
+          <article class="experience-card exp-heritage"><span>03 / CULTURE</span><h3>Stories of<br>cocoa & coffee</h3><p>Explore the heritage of the historic plantation communities.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit-section section-wrap" id="contact"><div class="visit-copy"><span class="eyebrow">YOUR JOURNEY STARTS HERE</span><h2>Ready to discover<br><em>the islands?</em></h2><p>Start imagining your trip. Get in touch with your questions or use the atlas to build a list of places you would love to see.</p><a class="button button-gold" href="https://wa.me/?text=Hello%2C%20I%27m%20interested%20in%20discovering%20S%C3%A3o%20Tom%C3%A9%20and%20Pr%C3%ADncipe." target="_blank" rel="noopener">Send a WhatsApp enquiry ↗</a><small>Replace this general link with your official tourism contact number before launch.</small></div><div class="visit-image"></div></section>
+  </main>
+  <footer class="site-footer"><a class="brand footer-brand" href="#home"><span class="brand-mark">0°</span><span><b>EMERALD</b><small>OF THE EQUATOR</small></span></a><p>Discover São Tomé & Príncipe · Gulf of Guinea<br><small>An initiative of <a href="https://fehborganization.org/" target="_blank" rel="noopener">FEHB International</a></small></p><span>© <span id="year"></span> Emerald of the Equator</span></footer>
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
