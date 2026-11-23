@@ -53,9 +53,9 @@ function selectPlace(p){
 }
 function setupMap(){
  if(!window.maplibregl){$("#map").innerHTML="<div class='map-unavailable'>Map could not load. Please check your internet connection.</div>";return;}
- map=new maplibregl.Map({container:"map",style:"https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",center:[6.9,0.9],zoom:6.3,attributionControl:true});
+ map=new maplibregl.Map({container:"map",style:{version:8,sources:{osm:{type:"raster",tiles:["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],tileSize:256,attribution:"© OpenStreetMap contributors"}},layers:[{id:"osm-base",type:"raster",source:"osm",minzoom:0,maxzoom:19}]},center:[6.9,0.9],zoom:6.3,attributionControl:true});
  map.addControl(new maplibregl.NavigationControl({showCompass:false}),"top-right");
- map.on("load",()=>{
+ map.on("load",()=>{map.resize();
   PLACES.forEach(p=>{
    const el=document.createElement("button");el.type="button";el.setAttribute("aria-label",`Show ${p.name}`);el.style.cssText="width:15px;height:15px;border:3px solid white;border-radius:50%;background:#b48a3c;box-shadow:0 1px 8px #173d2b99;cursor:pointer";
    el.addEventListener("click",()=>selectPlace(p));
@@ -65,7 +65,7 @@ function setupMap(){
   map.addSource("equator",{type:"geojson",data:{type:"Feature",geometry:{type:"LineString",coordinates:[[5.8,0],[7.8,0]]}}});
   map.addLayer({id:"equator-line",type:"line",source:"equator",paint:{"line-color":"#b48a3c","line-width":1.5,"line-dasharray":[3,3]}});
  });
- map.on("error",e=>console.warn("Map service reported an error:",e.error||e));
+ map.on("error",e=>{console.warn("Map service reported an error:",e.error||e);const msg=$("#map .map-error-message");if(msg)msg.textContent="Map tiles are temporarily unavailable. Please reload or check your connection.";});
 }
 document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{
  activeFilter=b.dataset.filter;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));renderList();
