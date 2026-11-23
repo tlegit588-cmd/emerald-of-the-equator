@@ -52,23 +52,22 @@ function selectPlace(p){
  $("#audioButton").textContent=UI_LOCALES[currentLanguage]?.listen||"▶ Listen to overview";
 }
 function setupMap(){
- // Use the standalone OpenStreetMap embed: MapLibre controls loaded, but its tile canvas remained blank in preview.
- const fallback=$("#map-fallback");
- if(fallback){fallback.style.zIndex="2";fallback.style.display="block";return;}
- if(!window.maplibregl){console.warn("MapLibre did not load; no map library available.");return;}
- map=new maplibregl.Map({container:"map",style:{version:8,sources:{osm:{type:"raster",tiles:["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],tileSize:256,attribution:"© OpenStreetMap contributors"}},layers:[{id:"osm-base",type:"raster",source:"osm",minzoom:0,maxzoom:19}]},center:[6.9,0.9],zoom:6.3,attributionControl:true});
- map.addControl(new maplibregl.NavigationControl({showCompass:false}),"top-right");
- map.on("load",()=>{map.resize();
-  PLACES.forEach(p=>{
-   const el=document.createElement("button");el.type="button";el.setAttribute("aria-label",`Show ${p.name}`);el.style.cssText="width:15px;height:15px;border:3px solid white;border-radius:50%;background:#b48a3c;box-shadow:0 1px 8px #173d2b99;cursor:pointer";
-   el.addEventListener("click",()=>selectPlace(p));
-   const marker=new maplibregl.Marker({element:el}).setLngLat([p.coords[1],p.coords[0]]).setPopup(new maplibregl.Popup({offset:15}).setText(p.name)).addTo(map);
-   markers[p.id]=marker;
-  });
-  map.addSource("equator",{type:"geojson",data:{type:"Feature",geometry:{type:"LineString",coordinates:[[5.8,0],[7.8,0]]}}});
-  map.addLayer({id:"equator-line",type:"line",source:"equator",paint:{"line-color":"#b48a3c","line-width":1.5,"line-dasharray":[3,3]}});
+ if(!window.L){$("#map").innerHTML="<div class='map-unavailable'>Interactive map library could not load. Destination coordinates remain available below.</div>";return;}
+ map=L.map("map",{scrollWheelZoom:false}).setView([0.8,6.9],7);
+ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
+  maxZoom:19,attribution:"© OpenStreetMap contributors"
+ }).addTo(map);
+ PLACES.forEach(p=>{
+  const lat=p.coords[0],lon=p.coords[1];
+  const marker=L.marker([lat,lon]).addTo(map);
+  marker.bindPopup(`<strong>${p.name}</strong><br>${lat.toFixed(5)}°, ${lon.toFixed(5)}°<br><small>${p.island}</small>`);
+  marker.on("click",()=>selectPlace(p));
+  markers[p.id]=marker;
  });
- map.on("error",e=>{console.warn("Map service reported an error:",e.error||e);const msg=$("#map .map-error-message");if(msg)msg.textContent="Map tiles are temporarily unavailable. Please reload or check your connection.";});
+ const group=L.featureGroup(Object.values(markers));
+ map.fitBounds(group.getBounds().pad(0.12));
+ L.polyline([[0,5.8],[0,7.8]],{color:"#b48a3c",weight:2,dashArray:"5 6"}).addTo(map);
+ setTimeout(()=>map.invalidateSize(),250);
 }
 document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{
  activeFilter=b.dataset.filter;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));renderList();
