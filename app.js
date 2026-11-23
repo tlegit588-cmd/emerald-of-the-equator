@@ -52,8 +52,10 @@ function selectPlace(p){
  $("#audioButton").textContent=UI_LOCALES[currentLanguage]?.listen||"▶ Listen to overview";
 }
 function setupMap(){
- if(!window.maplibregl){console.warn("MapLibre did not load; keeping the OpenStreetMap iframe fallback visible.");return;}
- const fallback=$("#map-fallback");if(fallback)fallback.remove();
+ // Use the standalone OpenStreetMap embed: MapLibre controls loaded, but its tile canvas remained blank in preview.
+ const fallback=$("#map-fallback");
+ if(fallback){fallback.style.zIndex="2";fallback.style.display="block";return;}
+ if(!window.maplibregl){console.warn("MapLibre did not load; no map library available.");return;}
  map=new maplibregl.Map({container:"map",style:{version:8,sources:{osm:{type:"raster",tiles:["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],tileSize:256,attribution:"© OpenStreetMap contributors"}},layers:[{id:"osm-base",type:"raster",source:"osm",minzoom:0,maxzoom:19}]},center:[6.9,0.9],zoom:6.3,attributionControl:true});
  map.addControl(new maplibregl.NavigationControl({showCompass:false}),"top-right");
  map.on("load",()=>{map.resize();
