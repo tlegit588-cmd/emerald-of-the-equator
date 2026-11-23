@@ -52,7 +52,8 @@ function selectPlace(p){
  $("#audioButton").textContent=UI_LOCALES[currentLanguage]?.listen||"▶ Listen to overview";
 }
 function setupMap(){
- if(!window.maplibregl){$("#map").innerHTML="<div class='map-unavailable'>Map could not load. Please check your internet connection.</div>";return;}
+ if(!window.maplibregl){console.warn("MapLibre did not load; keeping the OpenStreetMap iframe fallback visible.");return;}
+ const fallback=$("#map-fallback");if(fallback)fallback.remove();
  map=new maplibregl.Map({container:"map",style:{version:8,sources:{osm:{type:"raster",tiles:["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],tileSize:256,attribution:"© OpenStreetMap contributors"}},layers:[{id:"osm-base",type:"raster",source:"osm",minzoom:0,maxzoom:19}]},center:[6.9,0.9],zoom:6.3,attributionControl:true});
  map.addControl(new maplibregl.NavigationControl({showCompass:false}),"top-right");
  map.on("load",()=>{map.resize();
