@@ -4,5 +4,5 @@
   "main": "src/index.js",
   "compatibility_date": "2026-11-01",
   "assets": { "directory": ".", "binding": "ASSETS", "run_worker_first": ["/api/*"] },
-  "d1_databases": [{ "binding": "DB", "database_name": "emerald-tourism", "database_id": "REPLACE_WITH_D1_DATABASE_ID" }]
+  "d1_databases": [{ "binding": "DB", "database_name": "emerald-tourism", "database_id": "a04c7fdd-23ee-43dd-a628-1a374658e514" }]
 }
