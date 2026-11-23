@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -27,7 +27,7 @@
       <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
     </div>
     <nav class="main-nav" id="mainNav">
-      <a href="#home" data-t="navHome">Home</a><a href="#explore" data-t="navExplore">Explore</a><a href="#experiences" data-t="navExperiences">Experiences</a><a href="#travel-guide" data-t="navGuide">Travel guide</a><a href="#about" data-t="navAbout">About the islands</a><a href="https://fehborganization.org/" target="_blank" rel="noopener">FEHB International ↗</a>
+      <a href="#home" data-t="navHome">Home</a><a href="#explore" data-t="navExplore">Explore</a><a href="#experiences" data-t="navExperiences">Experiences</a><a href="#travel-guide" data-t="navGuide">Travel guide</a><a href="#local-directory">Local directory</a><a href="#register-business">List your business</a><a href="#about" data-t="navAbout">About the islands</a><a href="https://fehborganization.org/" target="_blank" rel="noopener">FEHB International ↗</a>
       <a class="nav-cta" href="#contact"><span data-t="planVisit">Plan your visit</span> <span>↗</span></a>
     </nav>
   </header>
@@ -121,6 +121,39 @@
       <div class="guide-disclaimer" data-t="guideDisclaimer">This guide is general information, not a live directory or official travel advisory. Accommodation, restaurants, tours, transport and entry rules can change. Confirm availability, prices, safety and requirements directly before booking.</div>
     </section>
 
+
+
+    <section class="local-directory-section section-wrap" id="local-directory">
+      <div class="section-heading"><div><span class="eyebrow">DISCOVER LOCAL SERVICES</span><h2>Meet the island's <em>local businesses.</em></h2></div><p>Explore the kinds of local services you can enquire about. Listings are added only after FEHB reviews and verifies the provider's details.</p></div>
+      <div class="local-directory-grid">
+        <article class="local-directory-card"><span class="directory-symbol">⌂</span><span class="directory-kicker">STAY</span><h3>Accommodation</h3><p>Hotels, guesthouses, eco-lodges and locally run stays across both islands.</p><a href="#register-business">Are you a provider? Apply to be listed ↗</a></article>
+        <article class="local-directory-card"><span class="directory-symbol">✳</span><span class="directory-kicker">TASTE</span><h3>Restaurants & food</h3><p>Restaurants, cafés, local cuisine, food experiences and community dining.</p><a href="#register-business">Are you a provider? Apply to be listed ↗</a></article>
+        <article class="local-directory-card"><span class="directory-symbol">↟</span><span class="directory-kicker">EXPLORE</span><h3>Guides & experiences</h3><p>Local guides, nature walks, cultural visits, boat trips and responsible tours.</p><a href="#register-business">Are you a provider? Apply to be listed ↗</a></article>
+        <article class="local-directory-card"><span class="directory-symbol">➜</span><span class="directory-kicker">MOVE</span><h3>Transport services</h3><p>Car hire, drivers, transfers and inter-island visitor transport services.</p><a href="#register-business">Are you a provider? Apply to be listed ↗</a></article>
+      </div>
+      <p class="directory-verification-note">Provider profiles are not yet published in this directory. FEHB will verify business identity, contact details and service information before adding a listing. No availability or prices are implied.</p>
+    </section>
+
+    <section class="registration-section section-wrap" id="register-business">
+      <div class="section-heading"><div><span class="eyebrow">FEHB INTERNATIONAL · COMMUNITY TOURISM</span><h2>Register your <em>tourism business.</em></h2></div><p>Hotels, restaurants, guides and transport operators can request inclusion. Every application is reviewed before publication. Submission does not guarantee approval.</p></div>
+      <div class="registration-layout">
+        <form id="businessRegistration" class="business-form">
+          <label>Business name *<input name="business_name" maxlength="120" required autocomplete="organization"></label>
+          <div class="form-two-col"><label>Business category *<select name="category" required><option value="">Choose a category</option><option value="stay">Accommodation</option><option value="food">Restaurant / food</option><option value="guide">Tour guide / experiences</option><option value="transport">Transport</option><option value="other">Other tourism service</option></select></label><label>Island *<select name="island" required><option value="">Choose island</option><option value="sao_tome">São Tomé</option><option value="principe">Príncipe</option></select></label></div>
+          <label>Town / area *<input name="area" maxlength="100" required></label>
+          <label>Business description *<textarea name="description" minlength="30" maxlength="1000" rows="4" required placeholder="Describe your services (30–1000 characters)"></textarea></label>
+          <div class="form-two-col"><label>Contact person's name *<input name="contact_name" maxlength="100" required autocomplete="name"></label><label>Business email *<input name="email" type="email" maxlength="254" required autocomplete="email"></label></div>
+          <div class="form-two-col"><label>Phone / WhatsApp<input name="phone" type="tel" maxlength="35" autocomplete="tel"></label><label>Website (optional)<input name="website" type="url" maxlength="300" placeholder="https://"></label></div>
+          <label class="registration-consent"><input type="checkbox" name="consent" required> I confirm I am authorized to submit this business. I agree FEHB may contact me about this application and that approved public business details may appear in the directory. *</label>
+          <label class="registration-honeypot" aria-hidden="true">Leave this field empty<input name="company_fax" tabindex="-1" autocomplete="off"></label>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAGN-2QjV086XqHK0b4UbKcfw5WE"></div>
+          <button class="button button-gold" type="submit" id="registrationSubmit">Submit business application ↗</button>
+          <p id="registrationStatus" class="registration-status" role="status" aria-live="polite"></p>
+        </form>
+        <aside class="registration-aside"><h3>How approval works</h3><ol><li>Submit your business information.</li><li>FEHB reviews the details and may contact you for verification.</li><li>Approved public details can appear after a separate publishing step.</li></ol><p><strong>Privacy:</strong> Contact name and email are used for review and are not shown publicly. Do not submit identity documents or payment details.</p><p>Questions? <a href="https://wa.me/2399860074" target="_blank" rel="noopener noreferrer">Contact FEHB on WhatsApp ↗</a></p></aside>
+      </div>
+    </section>
+
     <section class="visit-section section-wrap" id="contact"><div class="visit-copy"><span class="eyebrow" data-t="journeyStarts">YOUR JOURNEY STARTS HERE</span><h2 data-t-html="readyTitle">Ready to discover<br><em>the islands?</em></h2><p data-t="visitCopy">Start imagining your trip. Get in touch with your questions or use the atlas to build a list of places you would love to see.</p><a class="button button-gold" href="https://wa.me/2399860074?text=Hello%2C%20I%27m%20interested%20in%20discovering%20S%C3%A3o%20Tom%C3%A9%20and%20Pr%C3%ADncipe." target="_blank" rel="noopener"><span data-t="whatsappEnquiry">Send a WhatsApp enquiry</span> ↗</a><small>Contact FEHB International on WhatsApp: +239 986 0074.</small></div><div class="visit-image"></div></section>
   </main>
   <a class="whatsapp-float" href="https://wa.me/2399860074?text=Hello%2C%20I%27m%20interested%20in%20discovering%20S%C3%A3o%20Tom%C3%A9%20and%20Pr%C3%ADncipe." target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp" title="Chat on WhatsApp">
@@ -128,8 +161,10 @@
   </a>
 
   <footer class="site-footer"><a class="brand footer-brand" href="#home"><span class="brand-mark">0°</span><span><b>EMERALD</b><small>OF THE EQUATOR</small></span></a><p>Discover São Tomé & Príncipe · Gulf of Guinea<br><small>An initiative of <a href="https://fehborganization.org/" target="_blank" rel="noopener">FEHB International</a></small></p><span>© <span id="year"></span> Emerald of the Equator</span></footer>
-  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-  <script src="app.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="i18n.js"></script>
+  <script src="app.js"></script>
+  <script src="registration.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>
