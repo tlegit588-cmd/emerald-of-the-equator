@@ -1,0 +1,8 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "emerald-of-the-equator",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-01",
+  "assets": { "directory": ".", "binding": "ASSETS", "run_worker_first": ["/api/*"] },
+  "d1_databases": [{ "binding": "DB", "database_name": "emerald-tourism", "database_id": "REPLACE_WITH_D1_DATABASE_ID" }]
+}
