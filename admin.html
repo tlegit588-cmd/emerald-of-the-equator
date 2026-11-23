@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#062d25">
+<title>Administration | Emerald of the Equator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<aside class="sidebar">
+ <a class="brand" href="/"><span class="brand-mark">0°</span><span><b>EMERALD</b><small>ADMINISTRATION</small></span></a>
+ <p class="side-label">WORKSPACE</p>
+ <a class="side-link active" href="#overview">▦ &nbsp; Overview</a>
+ <a class="side-link" href="#applications">▤ &nbsp; Business applications</a>
+ <a class="side-link" href="#directory">◇ &nbsp; Public directory</a>
+ <div class="side-bottom"><span class="secure-dot"></span> Private administration<br><small>FEHB International</small></div>
+</aside>
+<main class="main">
+ <header class="topbar"><div><span class="eyebrow">FEHB INTERNATIONAL · TOURISM</span><h1>Administration</h1></div><a class="site-link" href="/">View public website ↗</a></header>
+ <section id="overview" class="welcome"><div><span class="eyebrow">MANAGEMENT WORKSPACE</span><h2>Welcome to your<br><em>island operations.</em></h2><p>Manage business registrations and the verified tourism directory for São Tomé and Príncipe.</p></div><div class="welcome-mark">0°</div></section>
+ <section class="stats" aria-label="Application statistics">
+  <article class="stat"><span>Pending applications</span><strong>—</strong><small>Awaiting secure data connection</small></article>
+  <article class="stat"><span>Approved businesses</span><strong>—</strong><small>Verified directory entries</small></article>
+  <article class="stat"><span>Rejected applications</span><strong>—</strong><small>Reviewed submissions</small></article>
+ </section>
+ <section id="applications" class="panel"><div class="panel-head"><div><span class="eyebrow">REVIEW QUEUE</span><h2>Business applications</h2></div><span class="status-pill">Connection pending</span></div>
+  <div class="notice"><strong>Secure setup required</strong><p>This dashboard interface is ready. Application records and approval actions will remain unavailable until administrator authentication and protected Worker endpoints are configured. No private applicant information is exposed on this page.</p></div>
+  <div class="table-wrap"><table><thead><tr><th>BUSINESS</th><th>TYPE</th><th>ISLAND</th><th>SUBMITTED</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody><tr><td colspan="6" class="empty">Applications will appear here after secure access is enabled.</td></tr></tbody></table></div>
+ </section>
+ <section id="directory" class="panel directory-panel"><div class="panel-head"><div><span class="eyebrow">PUBLIC LISTINGS</span><h2>Verified directory</h2></div><span class="status-pill">Not published</span></div><p>Only businesses explicitly approved by an authorized FEHB administrator will be eligible for publication.</p></section>
+ <footer>© <span id="year"></span> Emerald of the Equator · An initiative of FEHB International</footer>
+</main>
+<script src="admin.js"></script>
+</body></html>
