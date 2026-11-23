@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -79,7 +79,7 @@
           <div class="destination-list" id="destinationList" aria-live="polite"></div>
         </div>
         <div class="map-panel">
-          <div id="map" role="application" aria-label="Interactive map of São Tomé and Príncipe"><iframe id="map-fallback" title="OpenStreetMap map of São Tomé and Príncipe" src="https://www.openstreetmap.org/export/embed.html?bbox=6.15%2C-0.2%2C7.85%2C1.85&layer=mapnik" loading="eager" referrerpolicy="no-referrer" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
+          <div id="map" role="application" aria-label="Interactive map of São Tomé and Príncipe"></div>
           <div class="map-caption"><span class="map-dot"></span> SELECT A PIN OR DESTINATION</div>
           <div class="map-credit">Map data © OpenStreetMap · © CARTO</div>
         </div>
@@ -161,7 +161,7 @@
   </a>
 
   <footer class="site-footer"><a class="brand footer-brand" href="#home"><span class="brand-mark">0°</span><span><b>EMERALD</b><small>OF THE EQUATOR</small></span></a><p>Discover São Tomé & Príncipe · Gulf of Guinea<br><small>An initiative of <a href="https://fehborganization.org/" target="_blank" rel="noopener">FEHB International</a></small></p><span>© <span id="year"></span> Emerald of the Equator</span></footer>
-  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="i18n.js"></script>
   <script src="app.js"></script>
   <script src="registration.js"></script>
